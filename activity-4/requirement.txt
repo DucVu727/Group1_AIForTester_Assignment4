@@ -1,0 +1,25 @@
+Use Case: Create Interview Schedule
+
+Basic Flow
+
+1. User login in the system successfully.
+
+2. User clicks "Interview" on the horizontal left menu bar.
+
+3. System shows schedule calendar.
+
+4. User drags a selected time on the week calendar.
+
+5. System shows Create Interview Schedule screen.
+
+Alternative Flow
+
+1. User login successfully.
+
+2. User clicks Interview.
+
+3. System shows schedule list.
+
+4. User clicks Add above grid-view table.
+
+5. System shows Create Interview Schedule screen.

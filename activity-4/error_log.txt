@@ -1,0 +1,12 @@
+selenium.common.exceptions.NoSuchElementException
+
+Message:
+
+Unable to locate element:
+
+{"method":"css selector","selector":"[id='username123']"}
+
+Stacktrace:
+
+NoSuchElementException
+WebDriverException

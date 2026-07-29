@@ -60,15 +60,17 @@ Cấu trúc thư mục bài nộp tuân thủ đúng yêu cầu đặc tả củ
 │   └── prompt_log.md              # Log prompt dùng để yêu cầu AI review
 │
 ├── activity-4/                    # Hoạt động 4: Debug Automation Failure bằng AI
-│   ├── bug_description.md         # Mô tả lỗi cố ý tạo ra và cách tái hiện
-│   ├── ai_hypothesis.md           # Bảng giả thuyết lỗi, xác suất và hướng xử lý do AI gợi ý
-│   ├── verification_log.md        # Kết quả xác minh thực tế sau khi sửa lỗi
-│   ├── fix_commit.diff            # File diff chứa sự khác biệt mã nguồn sau khi fix lỗi
-│   └── prompt_log.md              # Log prompt dùng để debug lỗi với AI
+│   ├── login_test.py              # Script test chứa lỗi do Tester chủ động tạo ra
+│   ├── login_test_fixed.py        # Script test sau khi được fix lỗi theo gợi ý của AI
+│   ├── error_log.txt              # Stack trace báo lỗi NoSuchElementException
+│   ├── bug_description.md         # Mô tả chi tiết lỗi và cách tái hiện kịch bản
+│   ├── ai_hypothesis.md           # Bảng xếp hạng các giả thuyết lỗi do AI phân tích
+│   ├── veryfication_log.md        # Nhật ký xác minh và kiểm chứng lỗi thực tế (veryfication)
+│   ├── fix_commit.diff            # File diff so sánh code trước/sau khi fix lỗi
+│   └── prompt_log.md              # Log các câu lệnh prompt dùng để debug với AI
 │
 └── activity-5/                    # Hoạt động 5: Review kết quả bởi Tester (Human-in-the-loop)
-    ├── ai_vs_tester_log.md        # Bảng đối chiếu nhận xét AI đúng/sai cho HĐ1, HĐ2, HĐ3, HĐ4
-    └── reflection.md              # File tự đánh giá của Tester về trải nghiệm làm việc với AI
+    └── ai_vs_tester_log.md        # Nhật ký đối chiếu nhận xét AI đúng/sai và tổng kết của Tester
 ```
 
 ---
@@ -88,9 +90,9 @@ Cấu trúc thư mục bài nộp tuân thủ đúng yêu cầu đặc tả củ
 *   AI nhận diện đúng nguy cơ Flaky Test liên quan đến việc render chậm của các phần tử và đề xuất sử dụng Explicit Wait để tối ưu tính ổn định.
 
 ### Hoạt động 4: Debug Automation Failure bằng AI
-*   Giả lập lỗi cận biên về **Locator thay đổi** (Selector nút đăng nhập bị dev sửa đổi từ `#btn-login` sang `#loginBtn` trên UI, dẫn đến script Selenium bị crash do không tìm thấy phần tử).
-*   AI phân tích Stack trace lỗi và đưa ra giả thuyết chính xác nhất (xác suất 70% lỗi Locator), đề xuất giải pháp cập nhật lại locator trong file Page Object và sinh code diff sửa lỗi.
+*   Giả lập lỗi **NoSuchElementException** (Selector ô nhập Username bị sửa đổi cố ý từ `username` thành `username123` trong script [login_test.py](file:///d:/Thực%20Tập%20Chuyên%20Ngành/AI%20For%20Tester/Group1_AIForTester_Assignment4/activity-4/login_test.py), dẫn đến script Selenium bị crash).
+*   AI phân tích Stack trace lỗi và đưa ra bảng xếp hạng giả thuyết chính xác đến 90% cho nguyên nhân sai locator (`Incorrect Locator`), đề xuất giải pháp cập nhật lại selector đúng chuẩn trong file [login_test_fixed.py](file:///d:/Thực%20Tập%20Chuyên%20Ngành/AI%20For%20Tester/Group1_AIForTester_Assignment4/activity-4/login_test_fixed.py) và tạo code diff vá lỗi.
 
 ### Hoạt động 5: Đánh giá Human-in-the-loop
-*   Tester con người tiến hành rà soát lại toàn bộ mã nguồn và báo cáo do AI sinh ra.
-*   Tổng hợp nhật ký đối chiếu và phản biện chi tiết tại file [ai_vs_tester_log.md](file:///d:/Thực%20Tập%20Chuyên%20Ngành/AI%20For%20Tester/Group1_AIForTester_Assignment4/activity-5/ai_vs_tester_log.md).
+*   Tester tiến hành đối chiếu và kiểm tra chéo 100% output của AI từ HĐ1 đến HĐ4, tổng hợp tại file [ai_vs_tester_log.md](file:///d:/Thực%20Tập%20Chuyên%20Ngành/AI%20For%20Tester/Group1_AIForTester_Assignment4/activity-5/ai_vs_tester_log.md).
+*   Ở HĐ4, Tester phát hiện AI xếp hạng xác suất lỗi chưa tối ưu (đánh giá lỗi locator cao hơn lỗi Timeout do element chưa render), thực hiện Re-rank mức độ ưu tiên lên hàng đầu và kiểm chứng thực tế giúp bộ test suite chạy thành công **PASSED** cả 2 kịch bản.

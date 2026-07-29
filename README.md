@@ -79,20 +79,20 @@ Cấu trúc thư mục bài nộp tuân thủ đúng yêu cầu đặc tả củ
 
 ### Hoạt động 1: Sinh Automation Script bằng AI
 *   AI được cung cấp tài liệu yêu cầu đăng nhập, ảnh chụp màn hình và mã nguồn HTML.
-*   AI sinh ra file [test_login.py](file:///d:/Thực%20Tập%20Chuyên%20Ngành/AI%20For%20Tester/Group1_AIForTester_Assignment4/activity-1/test_login.py) bao phủ 2 kịch bản (Login thành công với tài khoản `tomsmith` / `SuperSecretPassword!` và Login thất bại).
+*   AI sinh ra file [test_login.py](activity-1/test_login.py) bao phủ 2 kịch bản (Login thành công với tài khoản `tomsmith` / `SuperSecretPassword!` và Login thất bại).
 
 ### Hoạt động 2: Thiết kế / Refactor Page Object Model bằng AI
 *   AI hỗ trợ tách code test thô thành mô hình POM tiêu chuẩn.
-*   Tầng Page Object ([login_page.py](file:///d:/Thực%20Tập%20Chuyên%20Ngành/AI%20For%20Tester/Group1_AIForTester_Assignment4/activity-2/pages/login_page.py)) chứa định nghĩa locator và hàm tương tác UI. Tầng Test ([test_login.py](file:///d:/Thực%20Tập%20Chuyên%20Ngành/AI%20For%20Tester/Group1_AIForTester_Assignment4/activity-2/tests/test_login.py)) thực hiện verify kết quả thông qua các assert logic.
+*   Tầng Page Object ([login_page.py](activity-2/pages/login_page.py)) chứa định nghĩa locator và hàm tương tác UI. Tầng Test ([test_login.py](activity-2/tests/test_login.py)) thực hiện verify kết quả thông qua các assert logic.
 
 ### Hoạt động 3: Review Automation Code bằng AI
 *   AI đánh giá chất lượng mã nguồn POM theo 4 khía cạnh: Maintainability, Stability, Reusability, và Readability.
 *   AI nhận diện đúng nguy cơ Flaky Test liên quan đến việc render chậm của các phần tử và đề xuất sử dụng Explicit Wait để tối ưu tính ổn định.
 
 ### Hoạt động 4: Debug Automation Failure bằng AI
-*   Giả lập lỗi **NoSuchElementException** (Selector ô nhập Username bị sửa đổi cố ý từ `username` thành `username123` trong script [login_test.py](file:///d:/Thực%20Tập%20Chuyên%20Ngành/AI%20For%20Tester/Group1_AIForTester_Assignment4/activity-4/login_test.py), dẫn đến script Selenium bị crash).
-*   AI phân tích Stack trace lỗi và đưa ra bảng xếp hạng giả thuyết chính xác đến 90% cho nguyên nhân sai locator (`Incorrect Locator`), đề xuất giải pháp cập nhật lại selector đúng chuẩn trong file [login_test_fixed.py](file:///d:/Thực%20Tập%20Chuyên%20Ngành/AI%20For%20Tester/Group1_AIForTester_Assignment4/activity-4/login_test_fixed.py) và tạo code diff vá lỗi.
+*   Giả lập lỗi **NoSuchElementException** (Selector ô nhập Username bị sửa đổi cố ý từ `username` thành `username123` trong script [login_test.py](activity-4/login_test.py), dẫn đến script Selenium bị crash).
+*   AI phân tích Stack trace lỗi và đưa ra bảng xếp hạng giả thuyết chính xác đến 90% cho nguyên nhân sai locator (`Incorrect Locator`), đề xuất giải pháp cập nhật lại selector đúng chuẩn trong file [login_test_fixed.py](activity-4/login_test_fixed.py) và tạo code diff vá lỗi.
 
 ### Hoạt động 5: Đánh giá Human-in-the-loop
-*   Tester tiến hành đối chiếu và kiểm tra chéo 100% output của AI từ HĐ1 đến HĐ4, tổng hợp tại file [ai_vs_tester_log.md](file:///d:/Thực%20Tập%20Chuyên%20Ngành/AI%20For%20Tester/Group1_AIForTester_Assignment4/activity-5/ai_vs_tester_log.md).
+*   Tester tiến hành đối chiếu và kiểm tra chéo 100% output của AI từ HĐ1 đến HĐ4, tổng hợp tại file [ai_vs_tester_log.md](activity-5/ai_vs_tester_log.md).
 *   Ở HĐ4, Tester phát hiện AI xếp hạng xác suất lỗi chưa tối ưu (đánh giá lỗi locator cao hơn lỗi Timeout do element chưa render), thực hiện Re-rank mức độ ưu tiên lên hàng đầu và kiểm chứng thực tế giúp bộ test suite chạy thành công **PASSED** cả 2 kịch bản.
